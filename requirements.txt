@@ -14,3 +14,29 @@ six==1.16.0
 webencodings==0.5.1
 xhtml2pdf==0.2.15
 whitenoise==6.6.0
+
+# Testing Frameworks
+pytest==7.4.3
+pytest-django==4.7.0
+pytest-cov==4.1.0
+pytest-xdist==3.5.0
+pytest-rerunfailures==13.0
+
+# UI Automation
+selenium==4.16.0
+webdriver-manager==4.0.1
+
+# API Testing
+requests==2.31.0
+
+# Test Data Generation
+Faker==21.0.0
+
+# Code Quality
+flake8==7.0.0
+black==23.12.1
+
+# Coverage & Reporting
+coverage==7.4.0
+pytest-html==4.1.1
+allure-pytest==2.13.2
