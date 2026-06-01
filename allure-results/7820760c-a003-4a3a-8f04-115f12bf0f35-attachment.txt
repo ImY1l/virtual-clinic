@@ -1,0 +1,4 @@
+[33mTesting setup
+[0m
+[32msetup verified
+[0m

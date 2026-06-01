@@ -1,0 +1,4 @@
+[33mTesting symptom view
+[0m
+[32msymptom view verified
+[0m

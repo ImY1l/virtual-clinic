@@ -347,9 +347,11 @@ def valid_registration_data():
         'email': fake.email(),
         'password_first': 'SecurePass123!',
         'password_second': 'SecurePass123!',
-        'first_name': fake.first_name(),
-        'last_name': fake.last_name(),
+        # AccountRegisterForm expects field names: firstname / lastname
+        'firstname': fake.first_name(),
+        'lastname': fake.last_name(),
     }
+
 
 
 @pytest.fixture

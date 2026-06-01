@@ -1,0 +1,4 @@
+REGISTER_FORM_ERRORS: <ul class="errorlist"><li>firstname<ul class="errorlist"><li>This field is required.</li></ul></li><li>lastname<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+REGISTER_RESPONSE_URL: None
+REGISTER_FORM_ERRORS: <ul class="errorlist"><li>firstname<ul class="errorlist"><li>This field is required.</li></ul></li><li>lastname<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+REGISTER_RESPONSE_URL: None

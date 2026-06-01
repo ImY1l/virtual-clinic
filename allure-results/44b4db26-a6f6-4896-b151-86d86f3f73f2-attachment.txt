@@ -1,0 +1,4 @@
+[33mTesting setup password
+[0m
+[32msetup password verified
+[0m

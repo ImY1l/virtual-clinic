@@ -1,0 +1,33 @@
+[31m[1mERROR   [0m django.request:log.py:241 Internal Server Error: /profile/update/
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/server/views_profile.py", line 65, in update_view
+    template_data = views.parse_session(request, {'form_button': "Update profile"})
+  File "/Users/amena/Desktop/virtual-clinic/server/views.py", line 86, in parse_session
+    server_ip1 = socket.gethostbyname(socket.getfqdn())
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+[31m[1mERROR   [0m django.request:log.py:241 Internal Server Error: /profile/update/
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/server/views_profile.py", line 65, in update_view
+    template_data = views.parse_session(request, {'form_button': "Update profile"})
+  File "/Users/amena/Desktop/virtual-clinic/server/views.py", line 86, in parse_session
+    server_ip1 = socket.gethostbyname(socket.getfqdn())
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+[31m[1mERROR   [0m django.request:log.py:241 Internal Server Error: /profile/update/
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/server/views_profile.py", line 65, in update_view
+    template_data = views.parse_session(request, {'form_button': "Update profile"})
+  File "/Users/amena/Desktop/virtual-clinic/server/views.py", line 86, in parse_session
+    server_ip1 = socket.gethostbyname(socket.getfqdn())
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known

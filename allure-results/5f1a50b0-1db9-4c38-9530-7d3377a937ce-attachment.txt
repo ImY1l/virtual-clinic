@@ -1,0 +1,4 @@
+[33mTesting logout
+[0m
+[32mlogout verified
+[0m

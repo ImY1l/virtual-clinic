@@ -1,0 +1,4 @@
+[33mTesting register error
+[0m
+[32mregister error verified
+[0m

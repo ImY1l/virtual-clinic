@@ -1,0 +1,1 @@
+{"uuid": "a39c2e6f-b886-40dc-bd7d-a476561d8360", "children": ["2470d3d8-a357-45cc-a1ff-be7764288361"], "befores": [{"name": "_django_set_urlconf", "status": "passed", "start": 1780310599109, "stop": 1780310599109}], "afters": [{"name": "_django_set_urlconf::0", "status": "passed", "start": 1780310599384, "stop": 1780310599384}], "start": 1780310599109, "stop": 1780310599384}

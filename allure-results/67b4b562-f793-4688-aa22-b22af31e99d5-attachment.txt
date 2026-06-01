@@ -1,0 +1,4 @@
+[33mTesting activity view
+[0m
+[32mactivity view verified
+[0m

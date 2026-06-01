@@ -1,0 +1,147 @@
+Operations to perform:
+  Synchronize unmigrated apps: messages, rest_framework, staticfiles
+  Apply all migrations: admin, auth, contenttypes, server, sessions
+Running pre-migrate handlers for application admin
+Running pre-migrate handlers for application auth
+Running pre-migrate handlers for application contenttypes
+Running pre-migrate handlers for application sessions
+Running pre-migrate handlers for application server
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK (0.003s)
+  Applying auth.0001_initial... OK (0.006s)
+  Applying admin.0001_initial... OK (0.003s)
+  Applying admin.0002_logentry_remove_auto_add... OK (0.005s)
+  Applying admin.0003_logentry_add_action_flag_choices... OK (0.003s)
+  Applying contenttypes.0002_remove_content_type_name... OK (0.008s)
+  Applying auth.0002_alter_permission_name_max_length... OK (0.004s)
+  Applying auth.0003_alter_user_email_max_length... OK (0.004s)
+  Applying auth.0004_alter_user_username_opts... OK (0.003s)
+  Applying auth.0005_alter_user_last_login_null... OK (0.004s)
+  Applying auth.0006_require_contenttypes_0002... OK (0.000s)
+  Applying auth.0007_alter_validators_add_error_messages... OK (0.004s)
+  Applying auth.0008_alter_user_username_max_length... OK (0.004s)
+  Applying auth.0009_alter_user_last_name_max_length... OK (0.005s)
+  Applying auth.0010_alter_group_name_max_length... OK (0.004s)
+  Applying auth.0011_update_proxy_permissions... OK (0.003s)
+  Applying auth.0012_alter_user_first_name_max_length... OK (0.005s)
+  Applying server.0001_initial... OK (0.042s)
+  Applying server.0002_message_notification... OK (0.012s)
+  Applying server.0003_auto_20180305_0900... OK (0.011s)
+  Applying server.0004_auto_20180306_1013... OK (0.007s)
+  Applying server.0005_auto_20180306_1052... OK (0.002s)
+  Applying server.0006_profile_speciality... OK (0.009s)
+  Applying server.0007_appointment_appointment_type... OK (0.008s)
+  Applying server.0008_account_archive... OK (0.011s)
+  Applying server.0009_symptom... OK (0.001s)
+  Applying server.0010_appointment_symptom... OK (0.008s)
+  Applying server.0011_auto_20181031_0310... OK (0.012s)
+  Applying server.0012_auto_20181031_0913... OK (0.023s)
+  Applying sessions.0001_initial... OK (0.001s)
+Running post-migrate handlers for application admin
+Adding content type 'admin | logentry'
+Adding permission 'Permission object (1)'
+Adding permission 'Permission object (2)'
+Adding permission 'Permission object (3)'
+Adding permission 'Permission object (4)'
+Running post-migrate handlers for application auth
+Adding content type 'auth | permission'
+Adding content type 'auth | group'
+Adding content type 'auth | user'
+Adding permission 'Permission object (5)'
+Adding permission 'Permission object (6)'
+Adding permission 'Permission object (7)'
+Adding permission 'Permission object (8)'
+Adding permission 'Permission object (9)'
+Adding permission 'Permission object (10)'
+Adding permission 'Permission object (11)'
+Adding permission 'Permission object (12)'
+Adding permission 'Permission object (13)'
+Adding permission 'Permission object (14)'
+Adding permission 'Permission object (15)'
+Adding permission 'Permission object (16)'
+Running post-migrate handlers for application contenttypes
+Adding content type 'contenttypes | contenttype'
+Adding permission 'Permission object (17)'
+Adding permission 'Permission object (18)'
+Adding permission 'Permission object (19)'
+Adding permission 'Permission object (20)'
+Running post-migrate handlers for application sessions
+Adding content type 'sessions | session'
+Adding permission 'Permission object (21)'
+Adding permission 'Permission object (22)'
+Adding permission 'Permission object (23)'
+Adding permission 'Permission object (24)'
+Running post-migrate handlers for application server
+Adding content type 'server | account'
+Adding content type 'server | action'
+Adding content type 'server | appointment'
+Adding content type 'server | hospital'
+Adding content type 'server | location'
+Adding content type 'server | medicalinfo'
+Adding content type 'server | medicaltest'
+Adding content type 'server | prescription'
+Adding content type 'server | profile'
+Adding content type 'server | statistics'
+Adding content type 'server | message'
+Adding content type 'server | notification'
+Adding content type 'server | speciality'
+Adding content type 'server | symptom'
+Adding permission 'Permission object (25)'
+Adding permission 'Permission object (26)'
+Adding permission 'Permission object (27)'
+Adding permission 'Permission object (28)'
+Adding permission 'Permission object (29)'
+Adding permission 'Permission object (30)'
+Adding permission 'Permission object (31)'
+Adding permission 'Permission object (32)'
+Adding permission 'Permission object (33)'
+Adding permission 'Permission object (34)'
+Adding permission 'Permission object (35)'
+Adding permission 'Permission object (36)'
+Adding permission 'Permission object (37)'
+Adding permission 'Permission object (38)'
+Adding permission 'Permission object (39)'
+Adding permission 'Permission object (40)'
+Adding permission 'Permission object (41)'
+Adding permission 'Permission object (42)'
+Adding permission 'Permission object (43)'
+Adding permission 'Permission object (44)'
+Adding permission 'Permission object (45)'
+Adding permission 'Permission object (46)'
+Adding permission 'Permission object (47)'
+Adding permission 'Permission object (48)'
+Adding permission 'Permission object (49)'
+Adding permission 'Permission object (50)'
+Adding permission 'Permission object (51)'
+Adding permission 'Permission object (52)'
+Adding permission 'Permission object (53)'
+Adding permission 'Permission object (54)'
+Adding permission 'Permission object (55)'
+Adding permission 'Permission object (56)'
+Adding permission 'Permission object (57)'
+Adding permission 'Permission object (58)'
+Adding permission 'Permission object (59)'
+Adding permission 'Permission object (60)'
+Adding permission 'Permission object (61)'
+Adding permission 'Permission object (62)'
+Adding permission 'Permission object (63)'
+Adding permission 'Permission object (64)'
+Adding permission 'Permission object (65)'
+Adding permission 'Permission object (66)'
+Adding permission 'Permission object (67)'
+Adding permission 'Permission object (68)'
+Adding permission 'Permission object (69)'
+Adding permission 'Permission object (70)'
+Adding permission 'Permission object (71)'
+Adding permission 'Permission object (72)'
+Adding permission 'Permission object (73)'
+Adding permission 'Permission object (74)'
+Adding permission 'Permission object (75)'
+Adding permission 'Permission object (76)'
+Adding permission 'Permission object (77)'
+Adding permission 'Permission object (78)'
+Adding permission 'Permission object (79)'
+Adding permission 'Permission object (80)'

@@ -1,0 +1,4 @@
+[33mTesting register
+[0m
+[32mregister verified
+[0m
