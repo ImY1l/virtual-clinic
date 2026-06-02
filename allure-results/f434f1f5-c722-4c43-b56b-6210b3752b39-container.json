@@ -1,0 +1,1 @@
+{"uuid": "f5696db4-101f-4fca-9bdb-8540bd9a7bcf", "children": ["1868bc24-e4b8-4147-9c35-eeb4bf9238d0"], "befores": [{"name": "django_db_modify_db_settings_xdist_suffix", "status": "passed", "start": 1780383851304, "stop": 1780383851304}], "start": 1780383851304, "stop": 1780383851593}

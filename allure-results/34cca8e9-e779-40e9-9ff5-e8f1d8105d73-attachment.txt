@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 138, in run
+    self.finish_response()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 173, in finish_response
+    super().finish_response()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 196, in finish_response
+    self.close()
+    ~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 157, in close
+    super().close()
+    ~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/simple_server.py", line 38, in close
+    SimpleHandler.close(self)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 340, in close
+    self.result.close()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/http/response.py", line 335, in close
+    signals.request_finished.send(sender=self._handler_class)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/__init__.py", line 57, in close_old_connections
+    conn.close_if_unusable_or_obsolete()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 610, in close_if_unusable_or_obsolete
+    if self.get_autocommit() != self.settings_dict["AUTOCOMMIT"]:
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 464, in get_autocommit
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 137, in run
+    self.result = application(self.environ, self.start_response)
+                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/staticfiles/handlers.py", line 80, in __call__
+    return self.application(environ, start_response)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/test/testcases.py", line 1722, in __call__
+    return self.application(environ, start_response)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/wsgi.py", line 122, in __call__
+    signals.request_started.send(sender=self.__class__, environ=environ)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/__init__.py", line 57, in close_old_connections
+    conn.close_if_unusable_or_obsolete()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 610, in close_if_unusable_or_obsolete
+    if self.get_autocommit() != self.settings_dict["AUTOCOMMIT"]:
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 464, in get_autocommit
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.

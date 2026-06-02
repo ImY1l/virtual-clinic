@@ -1,0 +1,4 @@
+[33mTesting Symptom delete
+[0m
+[32mSymptom delete verified
+[0m

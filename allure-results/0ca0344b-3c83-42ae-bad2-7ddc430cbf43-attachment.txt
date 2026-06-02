@@ -1,0 +1,116 @@
+[31m[1mERROR   [0m django.request:log.py:241 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/server/views_home.py", line 65, in login_view
+    elif Account.objects.all().count() == 0:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.
+[33mWARNING [0m django.request:log.py:241 Not Found: /favicon.ico
+[31m[1mERROR   [0m django.request:log.py:241 Internal Server Error: /register/
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/server/views_home.py", line 104, in register_view
+    views.register_user(
+    ~~~~~~~~~~~~~~~~~~~^
+        form.cleaned_data['email'],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        Account.ACCOUNT_PATIENT
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/amena/Desktop/virtual-clinic/server/views.py", line 107, in register_user
+    user = User.objects.create_user(
+        email.lower(),
+        email.lower(),
+        password
+    )
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/auth/models.py", line 161, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/auth/models.py", line 155, in _create_user
+    user.save(using=self._db)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/auth/base_user.py", line 76, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.
