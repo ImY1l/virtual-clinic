@@ -1,0 +1,29 @@
+[1m[31mERROR   [0m django.request:log.py:241 Internal Server Error: /profile/update/
+Traceback (most recent call last):
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/sessions/middleware.py", line 59, in process_response
+    request.session.save()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 80, in save
+    return self.create()
+           ~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 54, in create
+    self.save(must_create=True)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 85, in save
+    with transaction.atomic(using=using):
+         ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/transaction.py", line 198, in __enter__
+    if not connection.get_autocommit():
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 464, in get_autocommit
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.

@@ -1,0 +1,110 @@
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 138, in run
+    self.finish_response()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 173, in finish_response
+    super().finish_response()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 196, in finish_response
+    self.close()
+    ~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 157, in close
+    super().close()
+    ~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/simple_server.py", line 38, in close
+    SimpleHandler.close(self)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 340, in close
+    self.result.close()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/http/response.py", line 335, in close
+    signals.request_finished.send(sender=self._handler_class)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/__init__.py", line 57, in close_old_connections
+    conn.close_if_unusable_or_obsolete()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 610, in close_if_unusable_or_obsolete
+    if self.get_autocommit() != self.settings_dict["AUTOCOMMIT"]:
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 464, in get_autocommit
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64131)
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 138, in run
+    self.finish_response()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 173, in finish_response
+    super().finish_response()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 196, in finish_response
+    self.close()
+    ~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 157, in close
+    super().close()
+    ~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/simple_server.py", line 38, in close
+    SimpleHandler.close(self)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 340, in close
+    self.result.close()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/http/response.py", line 335, in close
+    signals.request_finished.send(sender=self._handler_class)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/dispatch/dispatcher.py", line 177, in send
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/__init__.py", line 57, in close_old_connections
+    conn.close_if_unusable_or_obsolete()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 610, in close_if_unusable_or_obsolete
+    if self.get_autocommit() != self.settings_dict["AUTOCOMMIT"]:
+       ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/db/backends/base/base.py", line 464, in get_autocommit
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/pytest_django/plugin.py", line 798, in _blocking_wrapper
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Database access not allowed, use the "django_db" mark, or the "db" or "transactional_db" fixtures to enable it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.13/socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.13/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.13/socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 229, in handle
+    self.handle_one_request()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 252, in handle_one_request
+    handler.run(self.server.get_app())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 145, in run
+    self.handle_error()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/opt/miniconda3/lib/python3.13/wsgiref/handlers.py", line 387, in handle_error
+    self.finish_response()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/amena/Desktop/virtual-clinic/venv/lib/python3.13/site-packages/django/core/servers/basehttp.py", line 160, in finish_response
+    if self.environ["REQUEST_METHOD"] == "HEAD":
+       ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+----------------------------------------

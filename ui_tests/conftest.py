@@ -24,11 +24,13 @@ User = get_user_model()
 
 @pytest.fixture(autouse=True)
 def _enable_db_access_for_live_server(db):
-    """
-    Ensure pytest-django unblocks DB access for requests handled by Django's live_server.
-    Without this, the server request thread may raise:
-      RuntimeError: Database access not allowed, use the "django_db" mark...
-    """
+    """Allow DB access in Django live_server request thread."""
+    return None
+
+
+@pytest.fixture(scope="session")
+def live_server_trap_django_db_access(db):
+    """Hard-pin DB access for live_server; prevents request thread RuntimeError."""
     return None
 
 
