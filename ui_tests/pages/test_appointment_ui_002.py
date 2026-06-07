@@ -83,9 +83,7 @@ class TestFeatureF002ConsultationRequestUI:
 
         submit_button.click()
 
-    # =========================================================================
     # CASE 1: Valid Appointment Creation Flow (Happy Path)
-    # =========================================================================
     def test_create_appointment_successful_ui_flow(self, selenium, live_server):
         """TSCEN-02-001: Validates successful appointment creation form entry via UI."""
         self.login_user_via_ui(selenium, live_server)
@@ -97,9 +95,7 @@ class TestFeatureF002ConsultationRequestUI:
         
         assert "error" not in selenium.current_url.lower()
 
-    # =========================================================================
     # CASE 2: Decision Table Testing – Appointment Conflict Rules (FR-0601)
-    # =========================================================================
     def test_appointment_conflict_same_doctor_and_time_ui(self, selenium, live_server):
         """TC_F002_DTT_01: Overlapping booking request is blocked on the frontend view layer."""
         start_time = timezone.now() + timedelta(days=1, hours=10)
@@ -117,9 +113,7 @@ class TestFeatureF002ConsultationRequestUI:
 
         assert "conflict" in selenium.page_source.lower() or "overlap" in selenium.page_source.lower() or "error" in selenium.page_source.lower()
 
-    # =========================================================================
     # CASE 3: Boundary Value Analysis – Appointment Date Window
-    # =========================================================================
     def test_appointment_date_boundaries_ui(self, selenium, live_server):
         """TCON-02-BVA-011: Bookings configured beyond 5 open schedule days show validation markup error warnings."""
         self.login_user_via_ui(selenium, live_server)
@@ -132,9 +126,8 @@ class TestFeatureF002ConsultationRequestUI:
 
         assert "create" in selenium.current_url.lower() or "error" in selenium.page_source.lower()
 
-    # =========================================================================
     # CASE 4: Equivalence Partitioning – Form Choices
-    # =========================================================================
+    
     @pytest.mark.parametrize("mode, should_pass", [('Offline', True), ('Online', True)])
     def test_appointment_mode_equivalence_partitioning_ui(self, selenium, live_server, mode, should_pass):
         """Validates functional equivalence groups execute and persist entries smoothly via UI selection."""
@@ -149,9 +142,7 @@ class TestFeatureF002ConsultationRequestUI:
             WebDriverWait(selenium, 10).until(lambda driver: "/create" not in driver.current_url.lower())
             assert "error" not in selenium.current_url.lower()
 
-    # =========================================================================
     # CASE 5: Boundary Value Analysis – Appointment Time Sequence
-    # =========================================================================
     def test_appointment_chronological_time_sequence_ui(self, selenium, live_server):
         """TCON-02-020: Browser UI correctly rendering rejections when End Time <= Start Time."""
         self.login_user_via_ui(selenium, live_server)
@@ -162,9 +153,7 @@ class TestFeatureF002ConsultationRequestUI:
 
         assert "after" in selenium.page_source.lower() or "time" in selenium.page_source.lower() or "error" in selenium.page_source.lower()
 
-    # =========================================================================
     # CASE 6: State Transition Testing – Modification Flow (Active -> Active)
-    # =========================================================================
     def test_update_appointment_details_ui_flow(self, selenium, live_server):
         """TC_F002_STT_06: Validates updating an active appointment entry via the inline row link."""
         unique_description = "Original Booking State Description"
@@ -198,9 +187,7 @@ class TestFeatureF002ConsultationRequestUI:
         wait.until(lambda d: Appointment.objects.get(id=appointment.id).description == updated_text)
         assert Appointment.objects.get(id=appointment.id).status == "Active"
 
-    # =========================================================================
     # CASE 7: State Transition Testing – Cancellation Flow (Active -> Cancelled)
-    # =========================================================================
     def test_appointment_lifecycle_state_transitions_ui(self, selenium, live_server):
         """TC_F002_STT_07: Tests inline table button trigger to immediately launch the confirmation modal workflow."""
         unique_description = "STT-Lifecycle-Inline-Cancel-Anchor"
