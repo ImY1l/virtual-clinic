@@ -15,11 +15,11 @@ class TestFeatureF002ConsultationRequest:
         """Provisions complete relational entities matching the concrete schema attributes."""
         # 1. Base Users
         self.user_doc = User.objects.create_user(username="dr_yousef_vc", password="SecurePassword123!")
-        self.user_pat = User.objects.create_user(username="patient_amena_vc", password="SecurePassword123!")
+        self.user_pat = User.objects.create_user(username="patient_farah_vc", password="SecurePassword123!")
 
         # 2. Profiles (Required by Account model structure)
         profile_doc = Profile.objects.create(firstname="Yousef", lastname="Mohammad")
-        profile_pat = Profile.objects.create(firstname="Amena", lastname="Mohammad")
+        profile_pat = Profile.objects.create(firstname="Farah", lastname="Hanim")
 
         # 3. Accounts
         self.doctor = Account.objects.create(user=self.user_doc, profile=profile_doc, role=20)
