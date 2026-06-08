@@ -401,3 +401,10 @@ def email_test_cases(request):
     Parameterized email test cases for EP.
     """
     return request.param
+
+@pytest.fixture
+def patient_credentials(patient_account):
+    return {
+        "email": "patient@test.com",
+        "password": "Patient@123"
+    }
