@@ -14,11 +14,11 @@ class TestFeatureF003DoctorConsultationPrescription:
     @pytest.fixture(autouse=True)
     def setup_clinical_dependencies(self):
         """Establishes clear entity objects aligning with the model schema properties."""
-        self.user_doc = User.objects.create_user(username="dr_yousef_qa", password="PassPassword123!")
-        self.user_pat = User.objects.create_user(username="patient_amena_qa", password="PassPassword123!")
+        self.user_doc = User.objects.create_user(username="dr_yousef_D", password="PassPassword123!")
+        self.user_pat = User.objects.create_user(username="patient_yousef_P", password="PassPassword123!")
         
-        profile_doc = Profile.objects.create(firstname="Yousef", lastname="QA")
-        profile_pat = Profile.objects.create(firstname="Amena", lastname="QA")
+        profile_doc = Profile.objects.create(firstname="Yousef", lastname="D")
+        profile_pat = Profile.objects.create(firstname="Yousef", lastname="P")
         
         self.doctor = Account.objects.create(user=self.user_doc, profile=profile_doc, role=20)
         self.patient = Account.objects.create(user=self.user_pat, profile=profile_pat, role=10)
