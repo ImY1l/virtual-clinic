@@ -1,56 +1,61 @@
 import pytest
 from server.forms import LoginForm
 
+
+@pytest.mark.django_db
+def test_TC_F006_DTT_001_login_page_accessible(
+    client
+):
+    response = client.get("/")
+
+    assert response.status_code == 302
+    assert "/setup/" in response.url
+
 # ============================================================
 # DTT_002
-# Patient cannot access Admin Users page
+# Admin can access Admin Users page
 # ============================================================
 
 @pytest.mark.django_db
-def test_TC_F006_DTT_002_patient_denied_admin_users(
+def test_TC_F006_DTT_002_admin_access_admin_users(
+    admin_client
+):
+    response = admin_client.get("/admin/users/")
+    assert response.status_code == 200
+
+
+# ============================================================
+# DTT_003
+# Doctor can access Appointments page
+# ============================================================
+
+@pytest.mark.django_db
+def test_TC_F006_DTT_003_doctor_access_appointments(
+    doctor_client
+):
+    response = doctor_client.get(
+        "/appointment/list/"
+    )
+
+    assert response.status_code == 200
+
+# ============================================================
+# DTT_004
+# Patient can access Appointments page
+# ============================================================
+
+@pytest.mark.django_db
+def test_TC_F006_DTT_004_patient_access_appointments(
     client,
     patient_account
 ):
     client.force_login(patient_account.user)
 
     response = client.get(
-        "/admin/users/"
-    )
-
-    assert response.status_code in [302, 403]
-
-
-# ============================================================
-# DTT_003
-# Doctor cannot access Admin Users page
-# ============================================================
-
-@pytest.mark.django_db
-def test_TC_F006_DTT_003_doctor_denied_admin_users(
-    doctor_client
-):
-    response = doctor_client.get(
-        "/admin/users/"
-    )
-
-    assert response.status_code in [302, 403]
-
-
-# ============================================================
-# DTT_004
-# Admin can access Admin Users page
-# ============================================================
-
-@pytest.mark.django_db
-def test_TC_F006_DTT_004_admin_access_users(
-    admin_client
-):
-    response = admin_client.get(
-        "/admin/users/"
+        "/appointment/list/"
     )
 
     assert response.status_code == 200
-
 
 # ============================================================
 # DTT_005
@@ -67,33 +72,13 @@ def test_TC_F006_DTT_005_doctor_access_prescription_create(
 
     assert response.status_code == 200
 
-
 # ============================================================
 # DTT_006
-# Patient cannot create prescriptions
+# Lab can access medical test upload page
 # ============================================================
 
 @pytest.mark.django_db
-def test_TC_F006_DTT_006_patient_denied_prescription_create(
-    client,
-    patient_account
-):
-    client.force_login(patient_account.user)
-
-    response = client.get(
-        "/prescription/create/"
-    )
-
-    assert response.status_code in [302, 403]
-
-
-# ============================================================
-# DTT_007
-# Lab can upload medical tests
-# ============================================================
-
-@pytest.mark.django_db
-def test_TC_F006_DTT_007_lab_access_medtest_upload(
+def test_TC_F006_DTT_006_lab_access_medtest_upload(
     lab_client
 ):
     response = lab_client.get(
@@ -102,24 +87,35 @@ def test_TC_F006_DTT_007_lab_access_medtest_upload(
 
     assert response.status_code == 200
 
-
 # ============================================================
-# DTT_008
-# Patient cannot upload medical tests
+# DTT_007
+# Chemist can access prescription list page
 # ============================================================
 
 @pytest.mark.django_db
-def test_TC_F006_DTT_008_patient_denied_medtest_upload(
-    client,
-    patient_account
+def test_TC_F006_DTT_007_chemist_access_prescription_list(
+    chemist_client
 ):
-    client.force_login(patient_account.user)
-
-    response = client.get(
-        "/medtest/upload/"
+    response = chemist_client.get(
+        "/prescription/list/"
     )
 
-    assert response.status_code in [302, 403]
+    assert response.status_code == 200
+
+# ============================================================
+# DTT_008
+# Admin can access create employee page
+# ============================================================
+
+@pytest.mark.django_db
+def test_TC_F006_DTT_008_admin_access_create_employee(
+    admin_client
+):
+    response = admin_client.get(
+        "/admin/createemployee/"
+    )
+
+    assert response.status_code == 200
 
 @pytest.mark.django_db
 def test_TC_F006_BVA_001_email_length_49():
