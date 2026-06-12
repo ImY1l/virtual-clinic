@@ -9,8 +9,10 @@ rather than creating new accounts.
 Real routes under test: /prescription/list/, /prescription/update/
 """
 import pytest
+from django.contrib.auth.models import User as DjangoUser
+from django.utils import timezone
 
-from server.models import Prescription
+from server.models import Account, Profile, Prescription
 
 
 @pytest.mark.django_db
@@ -88,5 +90,75 @@ class TestFeatureF004ChemistDelivery:
         assert update_link not in content
 
         # The state is unchanged.
+        prescription.refresh_from_db()
+        assert prescription.active is False
+
+    # 2.2.5.2 Use Case Testing — Access Control on Prescription Views (Security Flow)
+    def test_TC_F004_UCT_02_access_control_on_prescription_views(
+        self, client, prescription, patient_account, chemist_account, doctor_account
+    ):
+        """TC_F004_UCT_02: Role-based access control on /prescription/list/.
+
+        - An unauthenticated request is redirected to the login page ('/').
+        - A Patient sees only their OWN prescriptions, not another patient's.
+        - The Chemist sees ALL prescriptions (current implemented behaviour;
+          per-pincode need-to-know scoping is not implemented in this build).
+        """
+        # `prescription` belongs to patient_account (John Doe). Seed a second
+        # patient (Patient B) with their own prescription to test isolation.
+        patient_b_user = DjangoUser.objects.create_user(
+            username='patient_b@test.com', email='patient_b@test.com',
+            password='Patient@123', first_name='Jane', last_name='Roe',
+        )
+        patient_b_profile = Profile.objects.create(firstname='Jane', lastname='Roe', phone='0123456700')
+        patient_b = Account.objects.create(
+            user=patient_b_user, profile=patient_b_profile, role=Account.ACCOUNT_PATIENT,
+        )
+        Prescription.objects.create(
+            patient=patient_b, doctor=doctor_account, date=timezone.now().date(),
+            medication='Ibuprofen 400mg', strength='1 tablet',
+            instruction='Once daily', refill=0, active=True,
+        )
+
+        # 1. Unauthenticated access is redirected to the login page.
+        response = client.get('/prescription/list/')
+        assert response.status_code == 302
+        assert response.url == '/'
+
+        # 2. Patient A (John Doe) sees only their own prescription.
+        client.force_login(patient_account.user)
+        content = client.get('/prescription/list/').content.decode()
+        assert 'Paracetamol 500mg' in content       # own prescription
+        assert 'Ibuprofen 400mg' not in content     # NOT Patient B's
+        client.logout()
+
+        # 3. Chemist sees all prescriptions (current implemented behaviour).
+        client.force_login(chemist_account.user)
+        content = client.get('/prescription/list/').content.decode()
+        assert 'Paracetamol 500mg' in content
+        assert 'Ibuprofen 400mg' in content
+
+    # 2.2.5.2 Use Case Testing — Modify Delivered Prescription (Exception Flow)
+    def test_TC_F004_UCT_03_cannot_modify_delivered_prescription(self, chemist_client, prescription):
+        """TC_F004_UCT_03: A delivered prescription cannot be modified through the
+        Chemist interface — no modification control is offered and the state
+        remains active=False (no update is applied).
+
+        Same defended behaviour as STT_02, exercised here as the UCT exception
+        flow (different test technique, same requirement: BR-9 / UC-13).
+        """
+        # Arrange: a delivered prescription.
+        prescription.active = False
+        prescription.save()
+
+        # Act: chemist views the list.
+        content = chemist_client.get('/prescription/list/').content.decode()
+
+        # No modification control is offered for the delivered prescription...
+        assert 'Delivered' in content
+        update_link = '/prescription/update/?pk={}'.format(prescription.pk)
+        assert update_link not in content
+
+        # ...and its state is unchanged.
         prescription.refresh_from_db()
         assert prescription.active is False
