@@ -12,11 +12,12 @@ does not implement size validation, so those cases are expected to FAIL and
 document the defect (do not weaken these assertions).
 """
 import pytest
+from django.contrib.auth.models import User as DjangoUser
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import timezone
 
 from server.forms import MedTestForm
-from server.models import MedicalTest
+from server.models import Account, MedicalTest, Profile
 
 
 @pytest.mark.django_db
@@ -210,3 +211,75 @@ class TestFeatureF005LabUpload:
         # Core STT assertion: completion flag persisted as True.
         medical_test.refresh_from_db()
         assert medical_test.completed is True
+
+    # ----- 2.2.6.5 Use Case Testing — Lab Workflow (UC-12) -----
+
+    def test_TC_F005_UCT_02_oversized_upload_rejected(self, lab_client, doctor_account, patient_account, hospital):
+        """TC_F005_UCT_02: Error flow — a >1 MB upload must be rejected and the
+        database left unchanged. The build enforces no size limit, so this is
+        EXPECTED TO FAIL and documents the same >1 MB defect (do not weaken)."""
+        content = b'x' * (2 * 1024 * 1024)  # 2 MB
+        oversized = SimpleUploadedFile('large_scan.jpg', content, content_type='image/jpeg')
+        data = self._upload_payload(doctor_account, patient_account, hospital, image1=oversized)
+
+        lab_client.post('/medtest/upload/', data=data)
+
+        # Expected: oversized file rejected -> DB unchanged (no record).
+        assert MedicalTest.objects.count() == 0
+
+    def test_TC_F005_UCT_03_access_control_on_medtest_views(
+        self, client, lab_account, chemist_account, medical_test
+    ):
+        """TC_F005_UCT_03: Security flow — role-based access control.
+
+        - Unauthenticated request to /medtest/upload/ is redirected to login.
+        - A Chemist (non-authorized role) is denied the upload endpoint
+          (redirect to /error/denied/).
+        - The Lab can reach /medtest/list/ and sees medical tests (current
+          implemented behaviour; per-pincode scoping is not implemented).
+        """
+        # 1. Unauthenticated access to the upload endpoint -> login page.
+        response = client.get('/medtest/upload/')
+        assert response.status_code == 302
+        assert response.url == '/'
+
+        # 2. Chemist is not in [Doctor, Lab] -> denied.
+        client.force_login(chemist_account.user)
+        response = client.get('/medtest/upload/')
+        assert response.status_code == 302
+        assert response.url == '/error/denied/'
+        client.logout()
+
+        # 3. Lab can access the list and sees the medical test.
+        client.force_login(lab_account.user)
+        response = client.get('/medtest/list/')
+        assert response.status_code == 200
+        assert medical_test.name in response.content.decode()
+
+    def test_TC_F005_UCT_04_cross_patient_report_access_denied(self, client, medical_test):
+        """TC_F005_UCT_04: Security flow (NFR-04 need-to-know) — Patient B must
+        NOT be able to view Patient A's report via /medtest/display/.
+
+        `display_view` performs no ownership check, so Patient B can open any
+        report by pk. This is EXPECTED TO FAIL and documents the cross-patient
+        data-exposure defect (do not weaken)."""
+        # `medical_test` belongs to patient_account (John Doe = Patient A).
+        patient_a_test = medical_test
+
+        # Seed Patient B (a different patient with no access to A's report).
+        patient_b_user = DjangoUser.objects.create_user(
+            username='patient_b5@test.com', email='patient_b5@test.com',
+            password='Patient@123', first_name='Jane', last_name='Roe',
+        )
+        Account.objects.create(
+            user=patient_b_user,
+            profile=Profile.objects.create(firstname='Jane', lastname='Roe', phone='0123456701'),
+            role=Account.ACCOUNT_PATIENT,
+        )
+
+        # Patient B directly requests Patient A's report by pk.
+        client.force_login(patient_b_user)
+        response = client.get('/medtest/display/?pk={}'.format(patient_a_test.pk))
+
+        # Expected: access denied -> Patient A's report must NOT be shown to B.
+        assert patient_a_test.name not in response.content.decode()
