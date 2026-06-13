@@ -176,3 +176,37 @@ class TestFeatureF005LabUpload:
         mt = MedicalTest.objects.first()
         assert all(bool(getattr(mt, 'image{}'.format(i))) for i in range(1, 6))  # 5 stored
         assert not hasattr(mt, 'image6')  # no sixth slot exists
+
+    # ----- 2.2.6.4 State Transition Testing (0-switch) — Completion Flag (UC-12) -----
+
+    def test_TC_F005_STT_01_lab_marks_test_completed(self, lab_client, medical_test):
+        """TC_F005_STT_01: Lab transitions a medical test's completion flag from
+        False to True via /medtest/update/ (valid 0-switch transition).
+
+        Verifies the success message and that completed=True is persisted.
+        (Report-file storage is validated by the EP/BVA upload tests, since the
+        update view processes only request.POST, not request.FILES.)
+        """
+        # Pre-condition: an assigned, not-yet-completed medical test.
+        assert medical_test.completed is False
+
+        payload = {
+            'name': medical_test.name,
+            'date': medical_test.date.strftime('%Y-%m-%d'),
+            'hospital': medical_test.hospital.id,
+            'description': medical_test.description,
+            'doctor': medical_test.doctor.id,
+            'patient': medical_test.patient.id,
+            'private': 'on',       # keep the test private (unchanged)
+            'completed': 'on',     # mark complete (the transition under test)
+        }
+        response = lab_client.post(
+            '/medtest/update/?pk={}'.format(medical_test.pk), data=payload,
+        )
+
+        assert response.status_code == 200
+        assert b"Medical test has been updated" in response.content
+
+        # Core STT assertion: completion flag persisted as True.
+        medical_test.refresh_from_db()
+        assert medical_test.completed is True
