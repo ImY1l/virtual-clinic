@@ -1,0 +1,3 @@
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+[14/Jun/2026 00:30:35,143] - Broken pipe from ('127.0.0.1', 59878)
+[14/Jun/2026 00:30:35,164] - Broken pipe from ('127.0.0.1', 60733)

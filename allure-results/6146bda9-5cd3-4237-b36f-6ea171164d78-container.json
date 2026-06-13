@@ -1,0 +1,1 @@
+{"uuid": "4e4b3a4b-5e5b-4669-b428-80788812616a", "children": ["0304e29e-c365-4bdb-88bd-a593590f0be6"], "befores": [{"name": "edge_service", "status": "passed", "start": 1781298502502, "stop": 1781298502506}], "start": 1781298502502, "stop": 1781298511811}
